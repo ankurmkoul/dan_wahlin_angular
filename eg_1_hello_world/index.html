@@ -1,0 +1,26 @@
+<html ng-app>
+	<head>
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	</head>
+	<body>
+		<h1>Basic functionality</h1>
+		<div>
+			<p>We only need to include <html ng-app> and import the angular script to get access to lots of basic angular goodies:</p>
+			<ul>
+				<li>directives:</li>
+				<ul>
+					<li>ng-model</li>
+					<li>ng-init</li>
+					<li>ng-non-bindable</li>
+				</ul>
+				<li ng-non-bindable>data binding (and {{this syntax}})</li>
+			</ul>
+		</div>
+		<div>
+			<p>the value of this input box is stored by angular - we're using binding to output the same value</p>
+			<input type="text" ng-model="thisIsAnAngularVariable" ng-init="thisIsAnAngularVariable='Hello World!'"></input>
+			{{thisIsAnAngularVariable}}
+		</div>
+	</body>
+</html>
