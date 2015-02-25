@@ -7,7 +7,7 @@
 	<body>
 		<h1>Filters</h1>
 		<!-- data-ng-init and ng-init mean the same thing - however the html spec allows custom attributes which start with data- hence many people prefer this -->
-		<div ng-init="value1='i am a string';value2=5;value3=['array entry C', 'array entry B', 'array entry A']">
+		<div ng-init="value1='i am a string';value2=5;value3=['array entry C', 'array entry B', 'array entry A'];value4=[1,2,3,4,5,6,7,8,9]">
 			<script>
 			</script>
 			<p>Filters allow us to change data using | syntax - you can define your own ones but here I'm going to show a couple (there aren't many) built in ones</p>
@@ -21,6 +21,11 @@
 			<p ng-repeat="item in value3">item in array: {{item}}</p>
 			<p>sorted array</p>
 			<p ng-repeat="item in value3|orderBy">item in array: {{item}}</p>
+			<p>similar thing but without ng-repeat:</p>
+			<p>original array</p>
+			<p>{{value4}}</p>
+			<p>original array</p>
+			<p>{{value4|orderBy:"-"}}</p>
 			<p>note that the code uses ng-init to set the data - this is pretty bad practise but its a handy way to chuck data into a scope with creating controllers etc</p>
 			<p>this is the full list of built-in filters</p>
 			<p>
