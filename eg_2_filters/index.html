@@ -1,0 +1,21 @@
+<html ng-app>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	</head>
+	<body>
+		<h1>Filters</h1>
+		<div ng-init="value1='i am a string';value2=5">
+			<script>
+			</script>
+			<p>Filters allow us to change data using | syntax - you can define your own ones but here I'm going to show some built in ones</p>
+			<p>raw value1: {{value1}}</p>
+			<p>value1 as uppercase: {{value1|uppercase}}</p>
+			<p>raw value2 : {{value2}}</p>
+			<p>value2 as currency : {{value2|currency}}</p>
+			<p>value2 as currency with £ option passed as a parameter: {{value2|currency:"£"}}</p>
+			<p>note that the code uses ng-init to set the data - this is pretty bad practise but its a handy way to chuck data into a scope with creating controllers etc</p>
+		</div>
+	</body>
+</html>
