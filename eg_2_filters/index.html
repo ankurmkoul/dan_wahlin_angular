@@ -8,8 +8,7 @@
 		<h1>Filters</h1>
 		<!-- data-ng-init and ng-init mean the same thing - however the html spec allows custom attributes which start with data- hence many people prefer this -->
 		<div ng-init="value1='i am a string';value2=5;value3=['array entry C', 'array entry B', 'array entry A'];value4=[1,2,3,4,5,6,7,8,9]">
-			<script>
-			</script>
+			<p>value1 = {{value1}}</p>			
 			<p>Filters allow us to change data using | syntax - you can define your own ones but here I'm going to show a couple (there aren't many) built in ones</p>
 			<p>raw value1: {{value1}}</p>
 			<p>value1 as uppercase: {{value1|uppercase}}</p>
