@@ -1,2 +1,2 @@
-Going through this good course on udemy. The example's I'm adding here necessarily the exercises set but they're my minimal illustrations of the concept
+Going through this course on udemy and creating examples of stuff as its covered.
 Use npm install to set up the dependencies
