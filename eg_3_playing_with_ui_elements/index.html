@@ -11,7 +11,7 @@
 			<p>the checkbox is bound the "myValue" using the ng-model directive</p>
 			<p>the button uses ng-click to run myValue!=myValue to reverse the value of the boolean</p>
 			<p>my value = {{myValue}}</p>
-			<p>
+			<p>an alternative way to output a variable is using ng-bind - its bound to the following span - my value = <span ng-bind="myValue"</span></p>
 			<input type="checkbox" ng-model="myValue"></checkbox>
 			<button ng-click="myValue=!myValue">toggle</button>
 			</p>
