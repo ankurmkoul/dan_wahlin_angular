@@ -1,0 +1,20 @@
+<html ng-app>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	</head>
+	<body>
+		<h1>Basic functionality</h1>
+		<div ng-init="myValue=false">
+			<p>this example uses a couple of components to show user interactions updating a simple boolean field</p>
+			<p>the checkbox is bound the "myValue" using the ng-model directive</p>
+			<p>the button uses ng-click to run myValue!=myValue to reverse the value of the boolean</p>
+			<p>my value = {{myValue}}</p>
+			<p>
+			<input type="checkbox" ng-model="myValue"></checkbox>
+			<button ng-click="myValue=!myValue">toggle</button>
+			</p>
+		</div>
+	</body>
+</html>
