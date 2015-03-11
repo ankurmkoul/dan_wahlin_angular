@@ -1,0 +1,26 @@
+<html ng-app>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	</head>
+	<body ng-cloak ng-init="val1='option 1';val2='option 2';val3='option 3';myValue=val1;">
+		<p ng-click="myValue=(myValue==val1) ? val2 : (myValue==val2) ? val3 : val1">showing and hiding layers using ng-switch (think switch case) - click this to change the value and see this in action</p>
+		<p>myValue = {{myValue}}</p>
+		<p>annoyingly, ng-switch forces me to hardcode the variable that I've already added into a variable - I can't use {{}} to force it to evaluate the expression either - bit annoying but I for one will obey our Googley overlords</p>
+		<div ng-switch on="myValue">
+			<p ng-switch-when="option 1">option 1 is selected</p>
+			<p ng-switch-when="option 2">option 2 is selected</p>
+			<p ng-switch-when="option 3">option 3 is selected</p>
+			<p ng-switch-default>unset!</p>
+		</div>
+		<p>same thing but done using ng-if - got to repeat the value of my var here too<p>
+		<p ng-if="myValue=='option 1'">option 1 is selected</p>
+		<p ng-if="myValue=='option 2'">option 2 is selected</p>
+		<p ng-if="myValue=='option 3'">option 3 is selected</p>
+		<p>(ps - you're unlikely to see it but I've added ng-cloak so that there is no angular-flash)</p>
+		<script>
+			alert("when this alert shows the screen is blank - thats because I've used ng-cloak. Remove the ng-cloak and you'll see all the crap that shows before Angular does its thing (then hit okay to see it render it correctly)");
+		</script>
+	</body>
+</html>
