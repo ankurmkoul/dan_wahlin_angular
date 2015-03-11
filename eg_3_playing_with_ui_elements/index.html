@@ -3,17 +3,25 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
 		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
 		<h1>Basic functionality</h1>
-		<div ng-init="myValue=false">
+		<div ng-init="myValue=false;myColour='red'">
 			<p>this example uses a couple of components to show user interactions updating a simple boolean field</p>
 			<p>the checkbox is bound the "myValue" using the ng-model directive</p>
 			<p>the button uses ng-click to run myValue!=myValue to reverse the value of the boolean</p>
 			<p>my value = {{myValue}}</p>
 			<p>an alternative way to output a variable is using ng-bind - its bound to the following span - my value = <span ng-bind="myValue"</span></p>
-			<input type="checkbox" ng-model="myValue"></checkbox>
-			<button ng-click="myValue=!myValue">toggle</button>
+			<p><input type="checkbox" ng-model="myValue"></input></p>
+			<p><button ng-click="myValue=!myValue">toggle</button></p>
+			<p>this one shows how we can use ng-class to update how our ui looks based on what the user does</p>
+			<p>note that setting the class requires class="red" whereas ng-class requires ng-class="'red'" (or in this ase ng-class="myColour" which references 'red')
+			<p ng-class="myColour">my colour: {{myColour}}</p>
+			<p>
+				<button ng-click="myColour='red'">change colour to red</button>
+				<button ng-click="myColour='blue'">change colour to blue</button>
+			</p>
 			</p>
 		</div>
 	</body>
