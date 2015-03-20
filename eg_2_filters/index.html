@@ -7,19 +7,25 @@
 	<body>
 		<h1>Filters</h1>
 		<!-- data-ng-init and ng-init mean the same thing - however the html spec allows custom attributes which start with data- hence many people prefer this -->
-		<div ng-init="value1='i am a string';value2=5;value3=['array entry C', 'array entry B', 'array entry A'];value4=[1,2,3,4,5,6,7,8,9]">
+		<div ng-init="value1='i am a string';value2=5;value3=['array entry C', 'array entry B', 'array entry A'];value4=[1,2,3,4,5,6,7,8,9];value5=[{name:'name1',city:'city1'},{name:'name2',city:'city2'},{name:'name3',city:'city3'}]">
 			<p>value1 = {{value1}}</p>			
 			<p>Filters allow us to change data using | syntax - you can define your own ones but here I'm going to show a couple (there aren't many) built in ones</p>
 			<p>raw value1: {{value1}}</p>
 			<p>value1 as uppercase: {{value1|uppercase}}</p>
 			<p>raw value2 : {{value2}}</p>
 			<p>value2 as currency : {{value2|currency}}</p>
-			<p>value2 as currency with £ option passed as a parameter: {{value2|currency:"£"}}</p>
+			<p>value2 as currency with £ option passed as a parameter (using:): {{value2|currency:"£"}}</p>
+			<p>value2 as currency with some random string option passed as a parameter (using:): {{value2|currency:"some random string"}}</p>
+			<p>a date formatted: {{'2015-12-12' | date:'yyyy'}}</p>
+			<p>note that this date has to be in this format: yyyy-mm-dd</p>
 			<p>using ng-repeat to iterate over an array:</p>
 			<p>original array</p>
 			<p ng-repeat="item in value3">item in array: {{item}}</p>
 			<p>sorted array</p>
 			<p ng-repeat="item in value3|orderBy">item in array: {{item}}</p>
+			<p>filtered array - we're defaulting to array entry B.</p>
+			<input type="text" ng-model="customFilter" ng-init="customFilter='array entry B'"/>
+			<p ng-repeat="item in value3 | filter:customFilter">{{item}}</p>
 			<p>similar thing but without ng-repeat:</p>
 			<p>original array</p>
 			<p>{{value4}}</p>
@@ -41,6 +47,20 @@
 					<li>limitTo</li>
 					<li>orderBy</li>
 				</ul>
+			</p>
+			<p>
+				this is a list of objects using ng-repeat where we show a property of that object (using dot syntax). We're also filtering - ordering by the city (ie by a property of the object) and limiting to 2
+				<table>
+						<tr>
+							<th>name</th>
+							<th>city</th>
+						</tr>
+						<tr ng-repeat="object in value5 | orderBy:'city':'-' | limitTo:2">
+							<td>{{object.name}}</td>
+							<td>{{object.city}}</td>
+						</tr>
+				</table>
+				note that this used 2 sets of curly braces rather than concatenating the string and that its output in a (very ugly) table
 			</p>
 		</div>
 	</body>
