@@ -1,0 +1,25 @@
+<html ng-app="app">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	</head>
+	<body>
+		<h1>Controllers</h1>
+		<div ng-controller="someControllerMethod">
+			<p>someValue = {{someValue}}</p>
+			<p ng-click="someFunction()">someNewValue = {{someNewValue}}</p>
+			<p>click on the text above to call someFunction (which is in the controller)</p>
+		</div>
+		<script>
+			// obvs this is best externalised but this is a nice simple example of a controller in action
+			function someController($scope) {
+				$scope.someValue = "i am a value!";
+				$scope.someFunction = function() {
+					$scope.someNewValue = "i am another value";
+				}
+			}
+			angular.module('app', []).controller('someControllerMethod', someController)
+		</script>
+	</body>
+</html>
