@@ -1,0 +1,48 @@
+<html ng-app='app'>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+		<script type='text/javascript' src='node_modules/angular/angular.js'></script>
+		<script type='text/javascript' src='node_modules/angular-route/angular-route.js'></script>
+		<link rel='stylesheet' type='text/css' href='node_modules/bootstrap/dist/css/bootstrap.css'>
+	</head>
+	<body ng-controller="someControllerMethod">
+		<h1>Routes</h1>
+		<p>Testing routes</p>
+		<p><a href="#/">default</a></p>
+		<p><a href="#location1">location1</a></p>
+		<p><a href="#location2">location2</a></p>
+		<script>
+			// tell angular that our ng-app is a module (note how we're passing a dependency into our module)
+			angular.module('app', ['ngRoute']);
+
+			(function() {
+				function someController($scope) {
+					console.log('someController invoked');
+				}
+				angular.module('app').controller('someControllerMethod', someController);
+
+				angular.module('app').config(function($routeProvider) {
+					$routeProvider.when('/', {
+						controller: 'someControllerMethod',
+						templateUrl: 'partials/defaultTemplate.html'
+					})
+					$routeProvider.when('/location1', {
+						controller: 'someControllerMethod',
+						templateUrl: 'partials/location1Template.html'
+					})
+					$routeProvider.when('/location2', {
+						controller: 'someControllerMethod',
+						templateUrl: 'partials/location2Template.html'
+					})
+					$routeProvider.otherwise({
+						redirectTo: '/'
+					});
+				})
+			}());
+		</script>
+		<!-- the template gets loaded into here -->
+		<div id="main">
+			<div ng-view></div>
+		</div>
+	</body>
+</html>

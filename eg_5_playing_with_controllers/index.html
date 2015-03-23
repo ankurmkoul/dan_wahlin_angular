@@ -6,20 +6,43 @@
 	</head>
 	<body>
 		<h1>Controllers</h1>
+		<p>not using as (with scope instead of this in the controller)</p>
 		<div ng-controller="someControllerMethod">
 			<p>someValue = {{someValue}}</p>
 			<p ng-click="someFunction()">someNewValue = {{someNewValue}}</p>
 			<p>click on the text above to call someFunction (which is in the controller)</p>
 		</div>
+		<br>
+		<p>using as (with this instead of scope in the controller)</p>
+		<div ng-controller="someControllerMethodUsingAs as ctrl">
+			<p>ctrl.someValue = {{ctrl.someValue}}</p>
+			<p ng-click="ctrl.someFunction()">ctrl.someNewValue = {{ctrl.someNewValue}}</p>
+			<p>click on the text above to call ctrl.someFunction (which is in the controller)</p>
+			<p>note that this might be of benefit when using nested controllers</p>
+		</div>
 		<script>
-			// obvs this is best externalised but this is a nice simple example of a controller in action
-			function someController($scope) {
-				$scope.someValue = "i am a value!";
-				$scope.someFunction = function() {
-					$scope.someNewValue = "i am another value";
+			// tell angular that our ng-app is a module
+			angular.module('app', []);
+
+			// there are a few ways of doing this but putting this stuff in an immediately executed function means we don't leave stuff lying around in global scope
+			(function() {
+				// obvs this is best externalised but this is a nice simple example of a controller in action
+				function someController($scope) {
+					$scope.someValue = "i am a value!";
+					$scope.someFunction = function() {
+						$scope.someNewValue = "i am another value";
+					}
 				}
-			}
-			angular.module('app', []).controller('someControllerMethod', someController)
+				function someControllerUsingAs() {
+					this.someValue = "i am a value!";
+					this.someFunction = function() {
+						this.someNewValue = "i am another value";
+					}
+				}
+				// note: the second param passed to module is for other modules to be passed in as dependencies
+				// also note: that we're defining this module to be used by our ng-app directive on line 1
+				angular.module('app').controller('someControllerMethod', someController).controller('someControllerMethodUsingAs', someControllerUsingAs);
+			}());
 		</script>
 	</body>
 </html>
