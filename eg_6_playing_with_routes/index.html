@@ -11,36 +11,48 @@
 		<p><a href="#/">default</a></p>
 		<p><a href="#location1">location1</a></p>
 		<p><a href="#location2">location2</a></p>
+		<p><a href="#room/:101">go to room 101</a></p>
 		<script>
 			// tell angular that our ng-app is a module (note how we're passing a dependency into our module)
 			angular.module('app', ['ngRoute']);
 
 			(function() {
-				function someController($scope) {
-					console.log('someController invoked');
+				function someController($scope, $routeParams) {
+					console.log('someController');
 				}
 				angular.module('app').controller('someControllerMethod', someController);
+
+
+				function anotherController($scope, $routeParams) {
+					console.log('anotherController invoked passing room id: ' + $routeParams.roomId);
+				}
+				angular.module('app').controller('anotherControllerMethod', anotherController);
+
 
 				angular.module('app').config(function($routeProvider) {
 					$routeProvider.when('/', {
 						controller: 'someControllerMethod',
 						templateUrl: 'partials/defaultTemplate.html'
 					})
-					$routeProvider.when('/location1', {
+					.when('/location1', {
 						controller: 'someControllerMethod',
 						templateUrl: 'partials/location1Template.html'
 					})
-					$routeProvider.when('/location2', {
+					.when('/location2', {
 						controller: 'someControllerMethod',
 						templateUrl: 'partials/location2Template.html'
 					})
-					$routeProvider.otherwise({
+					.when('/room/:roomId', {
+						controller: 'anotherControllerMethod',
+						templateUrl: 'partials/room.html'
+					})
+					.otherwise({
 						redirectTo: '/'
 					});
 				})
 			}());
 		</script>
-		<!-- the template gets loaded into here -->
+		<!-- by the power of Angular the template gets loaded into here -->
 		<div id="main">
 			<div ng-view></div>
 		</div>
