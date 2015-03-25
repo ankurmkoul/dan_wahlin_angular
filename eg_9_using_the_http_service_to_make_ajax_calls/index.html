@@ -7,16 +7,28 @@
 	<body>
 		<h1>Routes</h1>
 		<p>Using the http service to make ajax calls</p>
+		<p>Here, we're loading cat pics from the flickr api using http.jsonp and using this data to populate a header and image</p>
 		<script>
 			angular.module('app', []);
 
 			(function() {
-				angular.module('app').controller("myController", function($http) {
-					console.log($http);
+				angular.module('app').controller("myController", function($http, $scope) {
+					$http.jsonp('http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=JSON_CALLBACK')
+						.success(function(data, status, headers, config) {
+							console.log("success");
+							$scope.data = data;
+						})
+						.error(function(data, status, headers, config) {
+							console.log("error");
+						});
 				});
 			}());
 		</script>
 		<div ng-controller="myController">
+			<div ng-repeat="item in data.items">
+				<p>{{item.title}}</p>
+				<img src="{{item.media.m}}">
+			</div>
 		</div>
 	</body>
 </html>
