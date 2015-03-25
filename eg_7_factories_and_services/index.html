@@ -12,37 +12,89 @@
 
 			(function() {
 				// TODO: describe
-				angular.module('app').factory('myFactory', function() {
+				// Note that since this is a constructor function the convention is to capitalise the first letter in the name (rather than normal camel case)
+				angular.module('app').factory('MyFactory', function() {
+					// this could look like this - but this wouldn't make it behave like a factory
+//					return {
+//						val1:Math.random(),
+//						val2:Math.random()
+//					}
+					// so instead we do this
+					console.log("MyFactory called");
 					return {
-						val1:Math.random(),
-						val2:Math.random()
-					}
+						getObject: function() {
+							return {
+								val1:Math.random(),
+								val2:Math.random()
+							}
+						}
+					};
 				});
 
 				// TODO: describe
 				angular.module('app').service('myService', function() {
+					console.log("MyService called");
 					this.val1=Math.random();
 					this.val2=Math.random();
 				});
 
 				// bog standard controller with factory and service passed in as params
-				angular.module('app').controller('myController', function (myFactory, myService) {
-					console.log("myController");
-					console.log("myFactory = " + myFactory.val1);	
-					console.log("myFactory = " + myFactory.val2);	
-					console.log("myService = " + myService.val1);	
-					console.log("myService = " + myService.val2);	
-				});
-				angular.module('app').controller('myController2', function (myFactory, myService) {
-					console.log("myController2");
-					console.log("myFactory = " + myFactory.val1);	
-					console.log("myFactory = " + myFactory.val2);	
-					console.log("myService = " + myService.val1);	
-					console.log("myService = " + myService.val2);	
+				angular.module('app')
+				// notice how Angular just knows that we're passing our factory and service in by recognising the name
+				.controller('myController', function ($scope, MyFactory, myService) {
+					$scope.serviceVal1 = myService.val1;
+					$scope.serviceVal2 =  myService.val2;
+					$scope.factoryVal1 = MyFactory.getObject().val1;
+					$scope.factoryVal2 =  MyFactory.getObject().val2;
+				})
+				.controller('myController2', function ($scope, MyFactory, myService) {
+					$scope.serviceVal1 = myService.val1;
+					$scope.serviceVal2 =  myService.val2;
+					$scope.factoryVal1 = MyFactory.getObject().val1;
+					$scope.factoryVal2 =  MyFactory.getObject().val2;
+				})
+				.controller('myController3', function($http, $timeout, $window, $location, $q, $rootScope, $interval, $filter, $log) {
+					console.log("$http = " + $http);
+ 					console.log("$timeout = " + $timeout);
+ 					console.log("$window = " + $window);
+ 					console.log("$location = " + $location);
+ 					console.log("$q = " + $q);
+ 					console.log("$rootScope = " + $rootScope);
+ 					console.log("$interval = " + $interval);
+ 					console.log("$filter = " + $filter);
+					console.log("$log = " + $log);
 				});
 			}());
 		</script>
-		<div ng-controller="myController"></div>
-		<div ng-controller="myController2"></div>
+		<p>Factories and services are singletons which enable us to define reusable tasks.</p>
+		<p>Here is an example of 2 controllers accessing a the same object created by a service and a factory</p>
+		<p>Notice that the factory returns a different object the second time - thats not cos of Angular I've just made it work like a factory.
+		<p>Take a look at the code - when we pass our Service and Factory through to our controllers we just use the name we passed through to angular when defining the service/factory and Angular magically just recognises it</p>
+		<p>From what I gather the only difference between the 2 - in terms of the code - is that the Angular gives calls: </p>
+		<p>var factoryToReturn = &lt;MyFactory&gt;()</p>
+		<p>var serviceToReturn = new &lt;MyService&gt;()</p>
+		<p>Hence a factory lets us define a constructor function and a service lets us define just a function<p>
+		<p>Also notice that these functions don't get run as they're needed but when Angular initialises</p>
+		<br>
+		<div ng-controller="myController">
+			<p>myController</p>
+			<p>serviceVal1 = {{serviceVal1}}</p>
+			<p>serviceVal2 = {{serviceVal2}}</p>
+			<p>factoryVal1 = {{factoryVal1}}</p>
+			<p>factoryVal2 = {{factoryVal2}}</p>
+		</div>
+		<br>
+		<div ng-controller="myController2">
+			<p>myController2</p>
+			<p>serviceVal1 = {{serviceVal1}}</p>
+			<p>serviceVal2 = {{serviceVal2}}</p>
+			<p>factoryVal1 = {{factoryVal1}}</p>
+			<p>factoryVal2 = {{factoryVal2}}</p>
+		</div>
+		<br>
+		<p>Angular comes with a number of built in Services - check out the log output to see them</p>
+		<div ng-controller="myController3">
+			<p>(myController3 - this is just here to output a load of services to the console)</p>
+		</div>
 	</body>
 </html>
