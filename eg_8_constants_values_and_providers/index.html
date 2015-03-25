@@ -1,0 +1,31 @@
+<html ng-app='app'>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+		<script type='text/javascript' src='../node_modules/angular/angular.js'></script>
+		<link rel='stylesheet' type='text/css' href='../node_modules/bootstrap/dist/css/bootstrap.css'>
+	</head>
+	<body>
+		<h1>Routes</h1>
+		<p>Constants, values and providers</p>
+		<script>
+			angular.module('app', []);
+
+			(function() {
+				angular.module('app')
+				.constant('myConstant', 'i am a constant!')
+				.value('myValue', '1.2.3')
+				.controller('myController', function($scope, myConstant, myValue) {
+					$scope.myConstant = myConstant;
+					$scope.myValue = myValue;
+				});
+			}());
+		</script>
+		<div ng-controller="myController">
+			<p>myController</p>
+			<p>constants and values are super-simple to set up and pass into controllers<\p>
+			<p>myConstant = {{myConstant}}</p>
+			<p>myValue = {{myValue}}</p>
+			<p>TODO : providers</p>
+		</div>
+	</body>
+</html>
