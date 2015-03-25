@@ -14,18 +14,26 @@
 				angular.module('app')
 				.constant('myConstant', 'i am a constant!')
 				.value('myValue', '1.2.3')
-				.controller('myController', function($scope, myConstant, myValue) {
+				.provider('myProvider', function() {
+					// $get must be implemented
+					this.$get = function() {
+						return "i am a string but i could be any object";
+					}
+				})
+				.controller('myController', function($scope, myConstant, myValue, myProvider) {
 					$scope.myConstant = myConstant;
 					$scope.myValue = myValue;
+					$scope.myProvider = myProvider;
 				});
 			}());
 		</script>
-		<div ng-controller="myController">
+		<div ng-controller='myController'>
 			<p>myController</p>
-			<p>constants and values are super-simple to set up and pass into controllers<\p>
+			<p>constants and values are super-simple to set up and pass into controllers</p>
 			<p>myConstant = {{myConstant}}</p>
 			<p>myValue = {{myValue}}</p>
-			<p>TODO : providers</p>
+			<p>myProvider = {{myProvider}}</p>
+			<p>note: angular constants and values (as well as factories and services) are just syntactic sugar built on top of providers</p>
 		</div>
 	</body>
 </html>

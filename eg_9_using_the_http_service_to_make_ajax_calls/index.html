@@ -11,8 +11,8 @@
 			angular.module('app', []);
 
 			(function() {
-				angular.module('app')
-				// . ... ;
+				angular.module('app').controller("myController", function($http) {
+					console.log($http);
 				});
 			}());
 		</script>
