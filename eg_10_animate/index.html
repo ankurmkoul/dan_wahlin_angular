@@ -6,42 +6,41 @@
 		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 		<link href="styles.css" rel="stylesheet" type="text/css">
 	</head>
+	<body ng-app="ngAnimate">
 		<h1>Animate</h1>
-		<div>
-			<p>
-				<p class="col-md-1 base-class" ng-class="var1">ngClass</p>
+		<input id="setbtn" type="button" value="set" ng-click="myVar='my-class'">
+		<input id="clearbtn" type="button" value="clear" ng-click="myVar=''">
+		<br>
+		<span class="base-class" ng-class="myVar">This is how it works when not within a jumbotron tag</span>
+		<div class="jumbotron" class="jumbotron">
+				<p class="base-class" ng-class="var1">ngClass</p>
 				<input type="button" value="test" ng-click="var1='my-class'"></input>
-			</p>
+				<input type="button" value="reset" ng-click="var1=''"></input>
 		</div>
-		<div>
-			<p>
-				<p class="col-md-1">ngShow/ngHide</p>
+		<div class="jumbotron">
+				<p>ngShow/ngHide</p>
 				<input type="button" value="test"></input>
-			</p>
+				<input type="button" value="reset"></input>
 		</div>
-		<div>
-			<p>
-				<p class="col-md-1">Include</p>
+		<div class="jumbotron">
+				<p>Include</p>
 				<input type="button" value="test"></input>
-			</p>
+				<input type="button" value="reset"></input>
 		</div>
-		<div>
-			<p>
-				<p class="col-md-1">Repeat</p>
+		<div class="jumbotron">
+				<p>Repeat</p>
 				<input type="button" value="test"></input>
-			</p>
+				<input type="button" value="reset"></input>
 		</div>
-		<div>
-			<p>
-				<p class="col-md-1">Switch</p>
+		<div class="jumbotron">
+				<p>Switch</p>
 				<input type="button" value="test"></input>
-			</p>
+				<input type="button" value="reset"></input>
 		</div>
-		<div>
-			<p>
-				<p class="col-md-1">View</p>
+		<div class="jumbotron">
+				<p>View</p>
 				<input type="button" value="test"></input>
-			</p>
+				<input type="button" value="reset"></input>
 		</div>
 	</body>
 </html>
