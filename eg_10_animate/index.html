@@ -1,4 +1,4 @@
-<html ng-app>
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
@@ -8,15 +8,26 @@
 	</head>
 	<body ng-app="ngAnimate">
 		<h1>Animate</h1>
+
+		<div ng-init="checked=true">
+		<label>
+			<input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+		</label>
+		<div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+			Visible...
+		</div>
+
+		<p>Note: see in the code that we're calling the ngAnimate controller (<body ng-app="ngAnimate">)</p>
 		<div class="jumbotron" class="jumbotron">
 				<div class="base-class" ng-class="var1">ngClass</div>
 				<input type="button" value="test" ng-click="var1='my-class'"></input>
 				<input type="button" value="reset" ng-click="var1=''"></input>
 		</div>
 		<div class="jumbotron">
-				<div>ngShow/ngHide</div>
-				<input type="button" value="test"></input>
-				<input type="button" value="reset"></input>
+				<div class="check-element sample-show-hide" ng-show="var2" style="clear:both;">ngShow/ngHide</div>
+				<input type="button" value="test" ng-click="var2=true"></input>
+				<input type="button" value="reset" ng-click="var2=false"></input>
+				<div class="base-class">for some reason I needed to change &lt;html ng-app&gt; to plain old &lt;html&gt; in order for this to work</div>
 		</div>
 		<div class="jumbotron">
 				<div>Include</div>

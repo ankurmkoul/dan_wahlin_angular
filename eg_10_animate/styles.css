@@ -6,9 +6,24 @@
 
 .my-class {
   color: red;
-	font-size: 20px;
+	font-size: 30px;
 }
 
 h1 {
 	margin-bottom: 20px;
+}
+
+.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
 }
