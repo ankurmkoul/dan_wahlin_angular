@@ -2,14 +2,16 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
 		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body>
+	<body ng-app="ngAnimate">
 		<h1>Animate</h1>
 		<div>
 			<p>
-				<p class="col-md-1">ngClass</p>
-				<input type="button" value="test"></input>
+				<p class="col-md-1 myBaseClass" ng-class="var1">ngClass</p>
+				<input type="button" value="test" ng-click="var1='myStyle1'"></input>
 			</p>
 		</div>
 		<div>
